@@ -1,25 +1,16 @@
-import { useState, SetStateAction } from "react";
+import { useState } from "react";
+import Matrix from './Matrix'
 
-export const [n, setN] = useState(0);
-const createMatrix = () => {
-  const res = [];
-  for (let i=0;i<n;i++) {
-    for (let j=0; j<n; j++) {
-      res.push({i:i,j:j});
-    }
-  }
-  return res;
-}
-export const [matrixEntries, setMatrixEntries] = useState(createMatrix());
 function Form() {
+  const [size, setSize] = useState(0);
   
-  const handleSubmit = (event: { preventDefault: () => void; }) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    setMatrixEntries(createMatrix())
+    Matrix(n=size);
   }
-  const handleChange = (event: { preventDefault: () => void; target: { value: SetStateAction<string>; }; }) => {
+  const handleChange = (event) => {
     event.preventDefault();
-    setN(+event.target.value)
+    setSize(parseInt(event.target.value));
   }
   return (
     <div>
@@ -27,7 +18,7 @@ function Form() {
       <form onSubmit={handleSubmit}>
         <label>
           n = 
-          <input type="text" pattern="[0-9]*" onChange={handleChange}/>
+          <input type="text" onChange={handleChange}/>
         </label>
         <input type="submit" value="Generate empty matrix"/>
       </form>
