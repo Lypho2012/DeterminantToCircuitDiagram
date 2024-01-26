@@ -3,10 +3,11 @@ import Matrix from './Matrix'
 
 function Form() {
   const [size, setSize] = useState(0);
+  const [isMatrixGenerated, setIsMatrixGenerated] = useState(false);
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    Matrix(n=size);
+    setIsMatrixGenerated(true);
   }
   const handleChange = (event) => {
     event.preventDefault();
@@ -22,6 +23,9 @@ function Form() {
         </label>
         <input type="submit" value="Generate empty matrix"/>
       </form>
+      {
+        isMatrixGenerated ? (<Matrix n={size}/>) : (<Matrix n={0}/>)
+      }
     </div>
   )
 }

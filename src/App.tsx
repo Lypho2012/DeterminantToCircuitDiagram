@@ -11,7 +11,6 @@ function App() {
       <h1>Determinant to Circuit Diagram Converter</h1>
       <div className="matrix">
         <Form/>
-        <Matrix/>
       </div>
     </>
   )
