@@ -2,7 +2,7 @@ import { useState } from "react";
 import Matrix from './Matrix'
 
 function Form() {
-  const [size, setSize] = useState(0);
+  const [size, setSize] = useState(1);
   const [isMatrixGenerated, setIsMatrixGenerated] = useState(false);
   
   const handleSubmit = (event) => {
@@ -11,7 +11,14 @@ function Form() {
   }
   const handleChange = (event) => {
     event.preventDefault();
-    setSize(parseInt(event.target.value));
+    try {
+      let temp = parseInt(event.target.value);
+      if (temp % 1 != 0) {temp = 1;}
+      setSize(temp);
+    } catch (Exception) {
+      setSize(1);
+    }
+    setIsMatrixGenerated(false);
   }
   return (
     <div>
@@ -24,7 +31,7 @@ function Form() {
         <input type="submit" value="Generate empty matrix"/>
       </form>
       {
-        isMatrixGenerated ? (<Matrix n={size}/>) : (<Matrix n={0}/>)
+        isMatrixGenerated ? (<Matrix n={size}/>) : (<Matrix n={1}/>)
       }
     </div>
   )

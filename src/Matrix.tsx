@@ -25,7 +25,7 @@ function Matrix(props) {
   for (let i=0;i<props.n;i++) {
     res[i] = new Array(props.n).fill(0);
     for (let j=0;j<props.n;j++) {
-      res[i][j] = <input key = {i+" "+j} type="text" name = {i+","+j}/>;
+      res[i][j] = <input key = {i+" "+j} type="text" name = {i+","+j} size={1}/>;
       
     }
   }
