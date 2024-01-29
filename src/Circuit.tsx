@@ -1,6 +1,10 @@
 import React from 'react'
 
 export default function Circuit(props) {
+  // permutations of columns
+  
+
+  // associate permutations with matrix
   let matrix = props.matrix;
   
   let n = matrix.length;
