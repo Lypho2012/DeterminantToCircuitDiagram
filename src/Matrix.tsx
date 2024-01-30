@@ -1,18 +1,21 @@
 import React from 'react'
 import { useState } from "react";
 import Circuit from './Circuit'
+import Laplace from './LaplaceExpansion';
 
 function Matrix(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
+
     let new_matrix = Array(props.n);
+    let k = 0;
+    console.log("print matrix");
     for (let i=0;i<props.n;i++) {
       new_matrix[i] = new Array(props.n).fill(0);
       for (let j=0;j<props.n;j++) {
-        const cell = document.getElementById(i+" "+j);
-        if (cell) {
-          if (cell.value > 0) {new_matrix[i][j] = 1;}
-        }
+        console.log(i+" "+j+" "+parseInt(event.target[k].value));
+        new_matrix[i][j] = parseInt(event.target[k].value);
+        k += 1;
       }
     }
     setMatrix(new_matrix);
@@ -45,10 +48,10 @@ function Matrix(props) {
           </div>
         )
       })}
-      <button>Display circuit diagram</button>
+      <button>Calculate determinant</button>
       </form>
       {
-        isMatrixReady ? (<Circuit matrix={matrix}/>)
+        isMatrixReady ? (<Laplace matrix={matrix}/>)//(<Circuit matrix={matrix}/>)
         :(<div></div>)
       }
     </div>
