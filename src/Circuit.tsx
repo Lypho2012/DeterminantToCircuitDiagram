@@ -1,6 +1,13 @@
 import React from 'react'
 import Columns from './Columns';
 
+/*
+Cindy Zhang
+
+INCOMPLETE
+Uses the Leibniz formula for determinants to generate circuit diagram (only compatible with values of 1's and 0's)
+*/
+
 export default function Circuit(props) {
   let matrix = props.matrix;
   let n = matrix.length;
@@ -20,9 +27,10 @@ export default function Circuit(props) {
 
   // Leibniz permutations of columns
   let permutations = Columns(n);
-  let positives = new Array<And>;
+  /*let positives = new Array<And>;
   let negatives = new Array<And>;
-  for (var permutation of permutations) {
+  for (let permutation of permutations) {
+    console.log(permutation);
     for (let i=0; i<n; i++) {
       console.log(i+" "+permutation.permutation[i]);
     }
@@ -37,7 +45,7 @@ export default function Circuit(props) {
     }
     console.log(line);
     console.log(a.result);
-  }
+  }*/
 
   return (
     <div>circuit</div>

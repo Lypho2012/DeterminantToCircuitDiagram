@@ -1,14 +1,17 @@
-import { SetStateAction, useState } from 'react'
-import ReactDOM from 'react-dom/client';
 import './App.css'
 import Form from './Form'
-import Matrix from './Matrix'
+
+/*
+Cindy Zhang
+
+Main function that runs the rest of the program
+*/
 
 function App() {
   
   return (
     <>
-      <h1>Determinant to Circuit Diagram Converter</h1>
+      <h1>Determinant Calculator</h1>
       <div className="matrix">
         <Form/>
       </div>

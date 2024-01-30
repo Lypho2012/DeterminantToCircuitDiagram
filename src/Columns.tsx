@@ -1,5 +1,12 @@
 import React from 'react'
 
+/*
+Cindy Zhang
+
+Uses the Leibniz formula for determinants to generate permutations of products in the summation
+*/
+
+// LinkedList Node
 class Node {
     permutation: Array<number>;
     sign: boolean; // true is negative, false is positive
@@ -23,17 +30,20 @@ function Columns(props) { // input: props.n
     for (let i=0; i<props.n; i++) {
         original[i] = i;
     }
+    console.log(original.length);
 
     let first = new Node(original,false);
+    console.log(first);
     let last = first;
-    while (first != null) {
+    /*while (first != null) {
         if (permutations.has(first.hash)) {
             continue;
         }
+        console.log(first);
         permutations.set(first.hash,first);
         for (let i=0; i<props.n; i++) {
             for (let j=0; j<props.n; j++) {
-                let next = new Node(Array<number>(props.n),!first.sign);
+                let next = new Node(new Array<number>(props.n),!first.sign);
                 for (let i=0; i<props.n; i++) {
                     next.permutation[i] = first.permutation[i];
                 }
@@ -48,7 +58,8 @@ function Columns(props) { // input: props.n
             }
         }
         first = first.next;
-    }
+    }*/
+    console.log(permutations.size);
     return permutations.values();
 }
 

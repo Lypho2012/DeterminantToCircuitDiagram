@@ -1,7 +1,13 @@
-import React from 'react'
 import { useState } from "react";
 import Circuit from './Circuit'
 import Laplace from './LaplaceExpansion';
+
+/*
+Cindy Zhang
+
+Textboxes for taking user input for entries to matrix
+Calls function to find determinant, which can be changed in code to call either the Leibniz formula (incomplete) or Laplace expansion
+*/
 
 function Matrix(props) {
   const handleSubmit = (event) => {
@@ -29,7 +35,6 @@ function Matrix(props) {
     res[i] = new Array(props.n).fill(0);
     for (let j=0;j<props.n;j++) {
       res[i][j] = <input key = {i+" "+j} type="text" name = {i+","+j} size={1}/>;
-      
     }
   }
   return (

@@ -1,4 +1,8 @@
-import React from 'react'
+/*
+Cindy Zhang
+
+Uses Laplace expansion to calculate determinant
+*/
 
 function determinant(matrix: Array<Array<number>>) {
     //console.log("start calculating");
