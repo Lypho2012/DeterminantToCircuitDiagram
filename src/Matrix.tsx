@@ -9,11 +9,11 @@ function Matrix(props) {
 
     let new_matrix = Array(props.n);
     let k = 0;
-    console.log("print matrix");
+    //console.log("print matrix");
     for (let i=0;i<props.n;i++) {
       new_matrix[i] = new Array(props.n).fill(0);
       for (let j=0;j<props.n;j++) {
-        console.log(i+" "+j+" "+parseInt(event.target[k].value));
+        //console.log(i+" "+j+" "+parseInt(event.target[k].value));
         new_matrix[i][j] = parseInt(event.target[k].value);
         k += 1;
       }
@@ -51,7 +51,7 @@ function Matrix(props) {
       <button>Calculate determinant</button>
       </form>
       {
-        isMatrixReady ? (<Circuit matrix={matrix}/>)//(<Laplace matrix={matrix}/>)
+        isMatrixReady ? (<Circuit matrix={matrix}/>)//(<Laplace matrix={matrix}/>)//
         :(<div></div>)
       }
     </div>

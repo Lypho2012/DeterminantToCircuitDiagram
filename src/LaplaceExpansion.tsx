@@ -13,7 +13,7 @@ function determinant(matrix: Array<Array<number>>) {
             minor_matrix[j] = new Array(n-1).fill(0);
             for (let k=0; k<n-1; k++) {
                 if (y == i) {y ++;}
-                console.log(i+" "+j+" "+k+" "+x+" "+y+" "+matrix[x][y]);
+                //console.log(i+" "+j+" "+k+" "+x+" "+y+" "+matrix[x][y]);
                 minor_matrix[j][k] = matrix[x][y];
                 y ++;
             }

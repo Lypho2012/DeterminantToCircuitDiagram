@@ -8,7 +8,7 @@ export default function Circuit(props) {
   class And {
     permutation: Array<number>;
     result: number;
-    constructor(permutation: Array<number>) {
+    constructor(permutation: Array<number>, n:number, matrix: Array<Array<number>>) {
       this.permutation = permutation;
       this.result = 1;
       for (let i=0; i<n; i++) {
@@ -18,17 +18,23 @@ export default function Circuit(props) {
     }
   }
 
-  // permutations of columns
+  // Leibniz permutations of columns
   let permutations = Columns(n);
   let positives = new Array<And>;
   let negatives = new Array<And>;
   for (var permutation of permutations) {
-    if (permutation.sign) {negatives.push(new And(permutation.permutation));}
-    else {positives.push(new And(permutation.permutation));}
+    for (let i=0; i<n; i++) {
+      console.log(i+" "+permutation.permutation[i]);
+    }
+    if (permutation.sign) {negatives.push(new And(permutation.permutation,n,matrix));}
+    else {positives.push(new And(permutation.permutation,n,matrix));}
   }
   for (var a of positives) {
     let line = "";
-    for (var num of a.permutation) {line += num + " ";}
+    for (let i=0; i<n; i++) {
+      console.log(i+" "+a.permutation[i]);
+      line += matrix[i][a.permutation[i]]+" ";
+    }
     console.log(line);
     console.log(a.result);
   }

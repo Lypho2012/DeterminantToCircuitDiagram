@@ -40,10 +40,14 @@ function Columns(props) { // input: props.n
                 let temp = next.permutation[i];
                 next.permutation[i] = next.permutation[j];
                 next.permutation[j] = temp;
+                if (permutations.has(next.hash)) {
+                    continue;
+                }
                 last.next = next;
                 last = next;
             }
         }
+        first = first.next;
     }
     return permutations.values();
 }
