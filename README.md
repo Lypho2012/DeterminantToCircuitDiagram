@@ -6,7 +6,7 @@ To run the program, clone the project onto your local IDE. In the command line i
 ```js
 npm run dev
 ```
-Open the local link [a link](http://localhost:5173/).
+Open the [local link] (http://localhost:5173/).
 
 To change which formula is used, in Matrix.tsx, replace
 ```js
