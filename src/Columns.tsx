@@ -20,8 +20,8 @@ function Columns(props) { // input: props.n
     let permutations = new Map<number,Node>();
 
     let original = Array<number>(props.n);
-    for (let i=1; i<=props.n; i++) {
-        original[i-1] = i;
+    for (let i=0; i<props.n; i++) {
+        original[i] = i;
     }
 
     let first = new Node(original,false);
@@ -45,7 +45,7 @@ function Columns(props) { // input: props.n
             }
         }
     }
-    return permutations.values;
+    return permutations.values();
 }
 
 export default Columns

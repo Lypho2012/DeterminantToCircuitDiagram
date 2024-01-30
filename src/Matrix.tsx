@@ -51,7 +51,7 @@ function Matrix(props) {
       <button>Calculate determinant</button>
       </form>
       {
-        isMatrixReady ? (<Laplace matrix={matrix}/>)//(<Circuit matrix={matrix}/>)
+        isMatrixReady ? (<Circuit matrix={matrix}/>)//(<Laplace matrix={matrix}/>)
         :(<div></div>)
       }
     </div>
