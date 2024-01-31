@@ -18,7 +18,12 @@ function Matrix(props) {
     for (let i=0;i<props.n;i++) {
       new_matrix[i] = new Array(props.n).fill(0);
       for (let j=0;j<props.n;j++) {
-        new_matrix[i][j] = parseInt(event.target[k].value);
+        try {
+          let temp = parseInt(event.target[k].value);
+          if (temp % 1 != 0) {temp = 1;}
+          new_matrix[i][j] = temp;
+        } catch (Exception) {}
+        
         k += 1;
       }
     }

@@ -1,5 +1,5 @@
 #root {
-  max-width: 1280px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -12,4 +12,7 @@
 .vertical{
   display: flex;
   flex-direction: column;
+}
+.container::-webkit-scrollbar {
+  height: 10px;
 }

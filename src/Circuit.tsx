@@ -42,6 +42,20 @@ export default function Circuit(props) {
     }
   }
 
+  function FixPosition () {
+    for (let i=0;i<n;i++) {
+      for (let j=0;j<n;j++) {
+        try {
+          console.log(i+', '+j);
+          document.getElementById(i+", "+j).style.left = "200px";
+          let top = i*100+j*10;
+          console.log(top);
+          document.getElementById(i+", "+j).style.top = top+"px";
+        } catch (Exception) {console.log("failed")}
+      }
+    }
+  }
+
   // Leibniz permutations of columns
   let permutations = Columns(n);
   let positives = new Array<And>;
@@ -124,6 +138,7 @@ export default function Circuit(props) {
           )
         })}
       </Xwrapper>
+      {/*<button onClick={FixPosition}>Fix Positions</button>*/}
     </div>
   )
 }

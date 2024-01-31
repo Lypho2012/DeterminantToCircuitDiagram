@@ -43,6 +43,7 @@ function Columns(n: number) { // input: props.n
             first = first.next;
             continue;
         }
+        console.log(first);
         permutations.set(first.hash,first);
         for (let i=0; i<n; i++) {
             for (let j=i+1; j<n; j++) {

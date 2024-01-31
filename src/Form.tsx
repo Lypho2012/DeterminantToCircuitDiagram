@@ -29,7 +29,6 @@ function Form() {
   }
   return (
     <div>
-      some text
       <form onSubmit={handleSubmit}>
         <label>
           n = 

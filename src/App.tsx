@@ -10,13 +10,23 @@ Main function that runs the rest of the program
 
 function App() {
   
+  const handleScroll = (event) => {
+    const container = event.target;
+    const scrollAmount = event.deltaY;
+    container.scrollTo({
+      top: container.scrollTop + scrollAmount,
+      left: container.scrollLeft + scrollAmount,
+      behavior: 'smooth'
+    });
+  };
+
   return (
-    <StrictMode>
+    <div onWheel={handleScroll}>
       <h1>Determinant Calculator</h1>
       <div className="matrix">
         <Form/>
       </div>
-    </StrictMode>
+    </div>
   )
 }
 
