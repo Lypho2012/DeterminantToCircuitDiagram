@@ -26,29 +26,31 @@ export default function Circuit(props) {
   }
 
   // Leibniz permutations of columns
-  console.log("columns "+n);
   let permutations = Columns(n);
-  /*let positives = new Array<And>;
+  let positives = new Array<And>;
   let negatives = new Array<And>;
   for (let permutation of permutations) {
-    console.log(permutation);
-    for (let i=0; i<n; i++) {
-      console.log(i+" "+permutation.permutation[i]);
-    }
     if (permutation.sign) {negatives.push(new And(permutation.permutation,n,matrix));}
     else {positives.push(new And(permutation.permutation,n,matrix));}
   }
-  for (var a of positives) {
-    let line = "";
-    for (let i=0; i<n; i++) {
-      console.log(i+" "+a.permutation[i]);
-      line += matrix[i][a.permutation[i]]+" ";
+
+  // Input position vectors
+  let inputs = new Array<String>();
+  for (let i=0;i<n;i++) {
+    for (let j=0;j<n;j++) {
+      inputs.push(i+", "+j);
     }
-    console.log(line);
-    console.log(a.result);
-  }*/
+  }
 
   return (
-    <div>circuit</div>
+    <div className='horizontal'>
+      <div>
+      {inputs.map((input) => {
+        return (
+          <div key={""+input}>{input}</div>
+        )
+      })}
+      </div>
+    </div>
   )
 }
