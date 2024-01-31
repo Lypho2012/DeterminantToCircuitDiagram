@@ -15,12 +15,12 @@ const boxStyle = {
   padding: "5px"
 };
 
-const DraggableBox = ({ id }) => {
+const DraggableBox = ({ id, text }) => {
   const updateXarrow = useXarrow();
   return (
     <Draggable onDrag={updateXarrow} onStop={updateXarrow}>
       <div id={id} style={boxStyle}>
-        {id}
+        {text}
       </div>
     </Draggable>
   );
@@ -65,9 +65,32 @@ export default function Circuit(props) {
       <div>
       {inputs.map((input) => {
         return (
-          <DraggableBox id={""+input}/>
+          <DraggableBox id={input} text={input}/>
         )
       })}
+      </div>
+      <div>
+        {positives.map((item) => {
+          return (
+            <DraggableBox id={item.permutation.concat} text="And"/>
+          )
+        })}
+        {negatives.map((item) => {
+          return (
+            <DraggableBox id={""+item.permutation.concat} text="And"/>
+          )
+        })}
+      </div>
+      <div>
+        {positives.map((item) => {
+          return (
+            item.permutation.map((j) => {
+              return (
+                <Xarrow start={"0, "+j} end={""+item.permutation.concat}/>
+              )
+            })
+          )
+        })}
       </div>
     </div>
   )
