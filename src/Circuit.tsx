@@ -6,7 +6,6 @@ import Draggable from "react-draggable";
 /*
 Cindy Zhang
 
-INCOMPLETE
 Uses the Leibniz formula for determinants to generate circuit diagram (only compatible with values of 1's and 0's)
 */
 const boxStyle = {
@@ -59,16 +58,29 @@ export default function Circuit(props) {
       inputs.push(i+", "+j);
     }
   }
+  // Method 1: Add all numbers simplified
+  let res1 = 0;
+  for (let positive of positives) {
+    res1 += positive.result;
+  }
+  for (let negative of negatives) {
+    res1 -= negative.result;
+  }
+
+  // Method 2a: Add all positives
+
+  // Method 2b: Add all negatives
 
   return (
     <div className='horizontal'>
       <Xwrapper>
-    
+        {/*Inputs boxes*/}
         {inputs.map((input) => {
           return (
             <DraggableBox id={""+input} text={input+": "+matrix[parseInt(input.split(", ")[0])][parseInt(input.split(", ")[1])]}/>
           )
         })}
+        {/*AND boxes*/}
         {positives.map((item) => {
           return (
             <DraggableBox id={item.permutation.toString()} text={"And = "+item.result}/>
@@ -79,11 +91,12 @@ export default function Circuit(props) {
             <DraggableBox id={""+item.permutation.toString()} text={"And = (-)"+item.result}/>
           )
         })}
+        {/*Arrows between inputs and AND */}
         {positives.map((item) => {
           return (
             item.permutation.map((j,i=0) => {
               return (
-                <Xarrow start={i+", "+j} end={""+item.permutation.toString()}/>
+                <Xarrow start={i+", "+j} end={item.permutation.toString()}/>
               )
             })
           )
@@ -92,9 +105,22 @@ export default function Circuit(props) {
           return (
             item.permutation.map((j,i=0) => {
               return (
-                <Xarrow start={i+", "+j} end={""+item.permutation.toString()}/>
+                <Xarrow start={i+", "+j} end={item.permutation.toString()}/>
               )
             })
+          )
+        })}
+        {/* Result box */}
+        <DraggableBox id={"Adder"} text={"Adder = "+res1}/>
+        {/*Arrows between AND and result*/}
+        {positives.map((item) => {
+          return (
+            <Xarrow start={item.permutation.toString()} end={"Adder"}/>
+          )
+        })}
+        {negatives.map((item) => {
+          return (
+            <Xarrow start={item.permutation.toString()} end={"Adder"}/>
           )
         })}
       </Xwrapper>
