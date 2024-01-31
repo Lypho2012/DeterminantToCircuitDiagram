@@ -1,5 +1,7 @@
 import React from 'react'
 import Columns from './Columns';
+import Xarrow, { useXarrow, Xwrapper } from "react-xarrows";
+import Draggable from "react-draggable";
 
 /*
 Cindy Zhang
@@ -7,6 +9,22 @@ Cindy Zhang
 INCOMPLETE
 Uses the Leibniz formula for determinants to generate circuit diagram (only compatible with values of 1's and 0's)
 */
+const boxStyle = {
+  border: "grey solid 2px",
+  borderRadius: "10px",
+  padding: "5px"
+};
+
+const DraggableBox = ({ id }) => {
+  const updateXarrow = useXarrow();
+  return (
+    <Draggable onDrag={updateXarrow} onStop={updateXarrow}>
+      <div id={id} style={boxStyle}>
+        {id}
+      </div>
+    </Draggable>
+  );
+};
 
 export default function Circuit(props) {
   let matrix = props.matrix;
@@ -47,7 +65,7 @@ export default function Circuit(props) {
       <div>
       {inputs.map((input) => {
         return (
-          <div key={""+input}>{input}</div>
+          <DraggableBox id={""+input}/>
         )
       })}
       </div>
