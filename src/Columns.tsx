@@ -16,40 +16,44 @@ class Node {
         this.permutation = permutation;
         this.sign = sign;
 
+        this.hash = 0;
+    }
+    updateHash() {
         let prime = 31;
         this.hash = prime;
-        for (let i=0; i<permutation.length; i++) {
-            this.hash = this.hash*prime + permutation[i];
+        for (let i=0; i<this.permutation.length; i++) {
+            this.hash = this.hash*prime + this.permutation[i];
         }
     }
 }
-function Columns(props) { // input: props.n
+function Columns(n: number) { // input: props.n
     let permutations = new Map<number,Node>();
 
-    let original = Array<number>(props.n);
-    for (let i=0; i<props.n; i++) {
+    let original = Array<number>(n);
+    for (let i=0; i<n; i++) {
         original[i] = i;
     }
-    console.log(original.length);
 
     let first = new Node(original,false);
-    console.log(first);
+    first.updateHash();
     let last = first;
-    /*while (first != null) {
+    while (first != null) {
         if (permutations.has(first.hash)) {
+            if (first.next == null) break;
+            first = first.next;
             continue;
         }
-        console.log(first);
         permutations.set(first.hash,first);
-        for (let i=0; i<props.n; i++) {
-            for (let j=0; j<props.n; j++) {
-                let next = new Node(new Array<number>(props.n),!first.sign);
-                for (let i=0; i<props.n; i++) {
-                    next.permutation[i] = first.permutation[i];
+        for (let i=0; i<n; i++) {
+            for (let j=i+1; j<n; j++) {
+                let next = new Node(new Array<number>(n),!first.sign);
+                for (let k=0; k<n; k++) {
+                    next.permutation[k] = first.permutation[k];
                 }
                 let temp = next.permutation[i];
                 next.permutation[i] = next.permutation[j];
                 next.permutation[j] = temp;
+                next.updateHash();
                 if (permutations.has(next.hash)) {
                     continue;
                 }
@@ -57,9 +61,11 @@ function Columns(props) { // input: props.n
                 last = next;
             }
         }
+        if (first.next == null) {
+            break;
+        }
         first = first.next;
-    }*/
-    console.log(permutations.size);
+    }
     return permutations.values();
 }
 

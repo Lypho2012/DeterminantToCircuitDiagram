@@ -26,6 +26,7 @@ export default function Circuit(props) {
   }
 
   // Leibniz permutations of columns
+  console.log("columns "+n);
   let permutations = Columns(n);
   /*let positives = new Array<And>;
   let negatives = new Array<And>;
