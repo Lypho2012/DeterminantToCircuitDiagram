@@ -1,7 +1,7 @@
 import React from 'react'
 import Columns from './Columns';
 import Xarrow, { useXarrow, Xwrapper } from "react-xarrows";
-import Draggable from "react-draggable";
+//import Draggable from "react-draggable";
 
 /*
 Cindy Zhang
@@ -11,10 +11,11 @@ Uses the Leibniz formula for determinants to generate circuit diagram (only comp
 const boxStyle = {
   border: "grey solid 2px",
   borderRadius: "10px",
-  padding: "5px"
+  padding: "5px",
+  axis: "none"
 };
 
-const DraggableBox = ({ id, text }) => {
+/*const DraggableBox = ({ id, text }) => {
   const updateXarrow = useXarrow();
   return (
     <Draggable onDrag={updateXarrow} onStop={updateXarrow}>
@@ -23,7 +24,7 @@ const DraggableBox = ({ id, text }) => {
       </div>
     </Draggable>
   );
-};
+};*/
 
 export default function Circuit(props) {
   let matrix = props.matrix;
@@ -38,20 +39,6 @@ export default function Circuit(props) {
       for (let i=0; i<n; i++) {
         this.result &= matrix[i][permutation[i]];
         if (!this.result) {break;}
-      }
-    }
-  }
-
-  function FixPosition () {
-    for (let i=0;i<n;i++) {
-      for (let j=0;j<n;j++) {
-        try {
-          console.log(i+', '+j);
-          document.getElementById(i+", "+j).style.left = "200px";
-          let top = i*100+j*10;
-          console.log(top);
-          document.getElementById(i+", "+j).style.top = top+"px";
-        } catch (Exception) {console.log("failed")}
       }
     }
   }
@@ -86,23 +73,27 @@ export default function Circuit(props) {
   // Method 2b: Add all negatives
 
   return (
+    <div className='vertical'>
     <div className='horizontal'>
       <Xwrapper>
         {/*Inputs boxes*/}
-        {inputs.map((input) => {
+        {inputs.map((input, count=1) => {
           return (
-            <DraggableBox id={""+input} text={input+": "+matrix[parseInt(input.split(", ")[0])][parseInt(input.split(", ")[1])]}/>
+            <text id={""+input} style={{"position":"absolute", "left":"200px", "top":""+(700+count*40)+"px"}}> {input+": "+matrix[parseInt(input.split(", ")[0])][parseInt(input.split(", ")[1])]}</text>
+            //<DraggableBox id={""+input} text={input+": "+matrix[parseInt(input.split(", ")[0])][parseInt(input.split(", ")[1])]}/>
           )
         })}
         {/*AND boxes*/}
-        {positives.map((item) => {
+        {positives.map((item, count=1) => {
           return (
-            <DraggableBox id={item.permutation.toString()} text={"And = "+item.result}/>
+            <text id={item.permutation.toString()} style={{"position":"absolute", "left":"400px", "top":""+(700+count*40)+"px"}}>{"And = "+item.result}</text>
+            //<DraggableBox id={item.permutation.toString()} text={"And = "+item.result}/>
           )
         })}
-        {negatives.map((item) => {
+        {negatives.map((item, count=1) => {
           return (
-            <DraggableBox id={""+item.permutation.toString()} text={"And = (-)"+item.result}/>
+            <text id={item.permutation.toString()} style={{"position":"absolute", "left":"400px", "top":""+(700+count*40)+"px"}}>{"And = "+item.result}</text>
+            //<DraggableBox id={item.permutation.toString()} text={"And = (-)"+item.result}/>
           )
         })}
         {/*Arrows between inputs and AND */}
@@ -125,7 +116,8 @@ export default function Circuit(props) {
           )
         })}
         {/* Result box */}
-        <DraggableBox id={"Adder"} text={"Adder = "+res1}/>
+        <text id={"Adder"} style={{"position":"absolute", "left":"600px", "top":"700px"}}>{"Adder = "+res1}</text>
+        {/*<DraggableBox id={"Adder"} text={"Adder = "+res1}/>*/}
         {/*Arrows between AND and result*/}
         {positives.map((item) => {
           return (
@@ -138,7 +130,7 @@ export default function Circuit(props) {
           )
         })}
       </Xwrapper>
-      {/*<button onClick={FixPosition}>Fix Positions</button>*/}
+    </div>
     </div>
   )
 }
