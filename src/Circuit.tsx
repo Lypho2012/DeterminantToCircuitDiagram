@@ -62,36 +62,42 @@ export default function Circuit(props) {
 
   return (
     <div className='horizontal'>
-      <div>
-      {inputs.map((input) => {
-        return (
-          <DraggableBox id={input} text={input}/>
-        )
-      })}
-      </div>
-      <div>
+      <Xwrapper>
+    
+        {inputs.map((input) => {
+          return (
+            <DraggableBox id={""+input} text={input+": "+matrix[parseInt(input.split(", ")[0])][parseInt(input.split(", ")[1])]}/>
+          )
+        })}
         {positives.map((item) => {
           return (
-            <DraggableBox id={item.permutation.concat} text="And"/>
+            <DraggableBox id={item.permutation.toString()} text={"And = "+item.result}/>
           )
         })}
         {negatives.map((item) => {
           return (
-            <DraggableBox id={""+item.permutation.concat} text="And"/>
+            <DraggableBox id={""+item.permutation.toString()} text={"And = (-)"+item.result}/>
           )
         })}
-      </div>
-      <div>
         {positives.map((item) => {
           return (
-            item.permutation.map((j) => {
+            item.permutation.map((j,i=0) => {
               return (
-                <Xarrow start={"0, "+j} end={""+item.permutation.concat}/>
+                <Xarrow start={i+", "+j} end={""+item.permutation.toString()}/>
               )
             })
           )
         })}
-      </div>
+        {negatives.map((item) => {
+          return (
+            item.permutation.map((j,i=0) => {
+              return (
+                <Xarrow start={i+", "+j} end={""+item.permutation.toString()}/>
+              )
+            })
+          )
+        })}
+      </Xwrapper>
     </div>
   )
 }
